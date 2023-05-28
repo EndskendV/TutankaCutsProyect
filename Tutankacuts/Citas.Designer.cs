@@ -34,13 +34,6 @@
             bttn_Delete = new Button();
             bttn_Cancel = new Button();
             Grid_Cita = new DataGridView();
-            Nombre = new DataGridViewTextBoxColumn();
-            Tel = new DataGridViewTextBoxColumn();
-            Fecha = new DataGridViewTextBoxColumn();
-            Hora = new DataGridViewTextBoxColumn();
-            Barber = new DataGridViewTextBoxColumn();
-            Corte = new DataGridViewTextBoxColumn();
-            Asist = new DataGridViewTextBoxColumn();
             txt_Name = new TextBox();
             label2 = new Label();
             label3 = new Label();
@@ -56,6 +49,14 @@
             bttn_Consult = new Button();
             bttn_Seleccionar = new Button();
             txt_Tel = new TextBox();
+            Nombre = new DataGridViewTextBoxColumn();
+            Tel = new DataGridViewTextBoxColumn();
+            Fecha = new DataGridViewTextBoxColumn();
+            Hora = new DataGridViewTextBoxColumn();
+            Barber = new DataGridViewTextBoxColumn();
+            Corte = new DataGridViewTextBoxColumn();
+            Asist = new DataGridViewTextBoxColumn();
+            CitaNum = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)Grid_Cita).BeginInit();
             SuspendLayout();
             // 
@@ -78,6 +79,7 @@
             bttn_Save.TabIndex = 1;
             bttn_Save.Text = "Agregar";
             bttn_Save.UseVisualStyleBackColor = true;
+            bttn_Save.Click += bttn_Save_Click;
             // 
             // bttn_Modify
             // 
@@ -87,6 +89,7 @@
             bttn_Modify.TabIndex = 2;
             bttn_Modify.Text = "Modificar";
             bttn_Modify.UseVisualStyleBackColor = true;
+            bttn_Modify.Click += bttn_Modify_Click;
             // 
             // bttn_Delete
             // 
@@ -113,55 +116,19 @@
             Grid_Cita.BackgroundColor = Color.FromArgb(34, 33, 74);
             Grid_Cita.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             Grid_Cita.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Grid_Cita.Columns.AddRange(new DataGridViewColumn[] { Nombre, Tel, Fecha, Hora, Barber, Corte, Asist });
-            Grid_Cita.Location = new Point(36, 252);
+            Grid_Cita.Columns.AddRange(new DataGridViewColumn[] { Nombre, Tel, Fecha, Hora, Barber, Corte, Asist, CitaNum });
+            Grid_Cita.Location = new Point(46, 275);
             Grid_Cita.Name = "Grid_Cita";
             Grid_Cita.RowTemplate.Height = 25;
             Grid_Cita.Size = new Size(734, 163);
-            Grid_Cita.TabIndex = 5;
-            // 
-            // Nombre
-            // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.Name = "Nombre";
-            // 
-            // Tel
-            // 
-            Tel.HeaderText = "Telefono";
-            Tel.Name = "Tel";
-            // 
-            // Fecha
-            // 
-            Fecha.HeaderText = "Fecha";
-            Fecha.Name = "Fecha";
-            // 
-            // Hora
-            // 
-            Hora.HeaderText = "Hora";
-            Hora.Name = "Hora";
-            // 
-            // Barber
-            // 
-            Barber.HeaderText = "Barbero";
-            Barber.Name = "Barber";
-            // 
-            // Corte
-            // 
-            Corte.HeaderText = "Corte";
-            Corte.Name = "Corte";
-            // 
-            // Asist
-            // 
-            Asist.HeaderText = "Asistencia";
-            Asist.Name = "Asist";
-            Asist.Width = 90;
+            Grid_Cita.TabIndex = 50;
             // 
             // txt_Name
             // 
             txt_Name.Location = new Point(120, 92);
             txt_Name.Name = "txt_Name";
             txt_Name.Size = new Size(164, 23);
-            txt_Name.TabIndex = 6;
+            txt_Name.TabIndex = 2;
             txt_Name.TextAlign = HorizontalAlignment.Center;
             txt_Name.TextChanged += txt_Name_TextChanged;
             // 
@@ -227,7 +194,7 @@
             Combo_Hrs.Location = new Point(120, 195);
             Combo_Hrs.Name = "Combo_Hrs";
             Combo_Hrs.Size = new Size(164, 23);
-            Combo_Hrs.TabIndex = 19;
+            Combo_Hrs.TabIndex = 4;
             // 
             // txt_Calendario
             // 
@@ -235,7 +202,7 @@
             txt_Calendario.Location = new Point(120, 145);
             txt_Calendario.Name = "txt_Calendario";
             txt_Calendario.Size = new Size(164, 23);
-            txt_Calendario.TabIndex = 0;
+            txt_Calendario.TabIndex = 3;
             // 
             // Combo_Barber
             // 
@@ -243,7 +210,7 @@
             Combo_Barber.Location = new Point(453, 40);
             Combo_Barber.Name = "Combo_Barber";
             Combo_Barber.Size = new Size(164, 23);
-            Combo_Barber.TabIndex = 21;
+            Combo_Barber.TabIndex = 5;
             // 
             // Combo_Tipo
             // 
@@ -252,7 +219,7 @@
             Combo_Tipo.Location = new Point(453, 90);
             Combo_Tipo.Name = "Combo_Tipo";
             Combo_Tipo.Size = new Size(164, 23);
-            Combo_Tipo.TabIndex = 22;
+            Combo_Tipo.TabIndex = 6;
             // 
             // Combo_asist
             // 
@@ -261,7 +228,7 @@
             Combo_asist.Location = new Point(453, 149);
             Combo_asist.Name = "Combo_asist";
             Combo_asist.Size = new Size(164, 23);
-            Combo_asist.TabIndex = 24;
+            Combo_asist.TabIndex = 7;
             // 
             // label8
             // 
@@ -299,11 +266,54 @@
             txt_Tel.Location = new Point(120, 40);
             txt_Tel.Name = "txt_Tel";
             txt_Tel.Size = new Size(164, 23);
-            txt_Tel.TabIndex = 28;
+            txt_Tel.TabIndex = 1;
             txt_Tel.Tag = "";
             txt_Tel.Text = "000-000-0000";
             txt_Tel.TextAlign = HorizontalAlignment.Center;
             txt_Tel.TextChanged += txt_Tel_TextChanged;
+            // 
+            // Nombre
+            // 
+            Nombre.HeaderText = "Nombre";
+            Nombre.Name = "Nombre";
+            // 
+            // Tel
+            // 
+            Tel.HeaderText = "Telefono";
+            Tel.Name = "Tel";
+            // 
+            // Fecha
+            // 
+            Fecha.HeaderText = "Fecha";
+            Fecha.Name = "Fecha";
+            // 
+            // Hora
+            // 
+            Hora.HeaderText = "Hora";
+            Hora.Name = "Hora";
+            // 
+            // Barber
+            // 
+            Barber.HeaderText = "Barbero";
+            Barber.Name = "Barber";
+            // 
+            // Corte
+            // 
+            Corte.HeaderText = "Corte";
+            Corte.Name = "Corte";
+            // 
+            // Asist
+            // 
+            Asist.HeaderText = "Asistencia";
+            Asist.Name = "Asist";
+            Asist.Width = 50;
+            // 
+            // CitaNum
+            // 
+            CitaNum.HeaderText = "Cita Num";
+            CitaNum.Name = "CitaNum";
+            CitaNum.ReadOnly = true;
+            CitaNum.Width = 40;
             // 
             // Citas
             // 
@@ -335,6 +345,7 @@
             Name = "Citas";
             Text = "Citas";
             Load += Citas_Load;
+            KeyDown += Citas_KeyDown;
             ((System.ComponentModel.ISupportInitialize)Grid_Cita).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -349,7 +360,6 @@
         private Button bttn_Cancel;
         private DataGridView Grid_Cita;
         private TextBox txt_Name;
-        private TextBox textBox2;
         private Label label2;
         private Label label3;
         private Label label4;
@@ -363,6 +373,7 @@
         private Label label8;
         private Button bttn_Consult;
         private Button bttn_Seleccionar;
+        private TextBox txt_Tel;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Tel;
         private DataGridViewTextBoxColumn Fecha;
@@ -370,6 +381,6 @@
         private DataGridViewTextBoxColumn Barber;
         private DataGridViewTextBoxColumn Corte;
         private DataGridViewTextBoxColumn Asist;
-        private TextBox txt_Tel;
+        private DataGridViewTextBoxColumn CitaNum;
     }
 }

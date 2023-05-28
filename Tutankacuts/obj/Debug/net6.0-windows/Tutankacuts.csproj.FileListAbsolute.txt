@@ -120,3 +120,10 @@ G:\TECNOLOGICO\Anal\Tutankacuts\Tutankacuts\obj\Debug\net6.0-windows\Tutankacuts
 G:\TECNOLOGICO\Anal\Tutankacuts\Tutankacuts\obj\Debug\net6.0-windows\ref\Tutankacuts.dll
 G:\TECNOLOGICO\Anal\Tutankacuts\Tutankacuts\obj\Debug\net6.0-windows\Tutankacuts.Ventas.resources
 H:\TECNOLOGICO\Anal\Tutankacuts\Tutankacuts\obj\Debug\net6.0-windows\Tutankacuts.Ventas.resources
+C:\Users\hpx11\Desktop\Tutankacuts\Tutankacuts\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+C:\Users\hpx11\Desktop\Tutankacuts\Tutankacuts\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\hpx11\Desktop\Tutankacuts\Tutankacuts\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\hpx11\Desktop\Tutankacuts\Tutankacuts\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\hpx11\Desktop\Tutankacuts\Tutankacuts\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\hpx11\Desktop\Tutankacuts\Tutankacuts\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\hpx11\Desktop\Tutankacuts\Tutankacuts\obj\Debug\net6.0-windows\Tutankacuts.Ventas.resources

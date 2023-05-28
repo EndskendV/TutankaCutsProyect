@@ -83,14 +83,23 @@ namespace Tutankacuts
         }
         private void bttn_Seleccionar_Click(object sender, EventArgs e)
         {
-            DateTime dateTime = Convert.ToDateTime(grid_Cliente.CurrentRow.Cells[4].Value.ToString());
-            bttn_Save.Enabled = false;
-            txt_Name.Text = grid_Cliente.CurrentRow.Cells[0].Value.ToString();
-            txt_Apellido.Text = grid_Cliente.CurrentRow.Cells[1].Value.ToString();
-            txt_Tel.Text = grid_Cliente.CurrentRow.Cells[2].Value.ToString();
-            txt_Mail.Text = grid_Cliente.CurrentRow.Cells[3].Value.ToString();
-            txt_Calendario.SelectionStart = dateTime;
-            txt_Calendario.SelectionEnd = dateTime;
+            string fecha = ""; DateTime dateTime=DateTime.Now;
+            try
+            {
+                 fecha= grid_Cliente.CurrentRow.Cells[4].Value.ToString();
+                dateTime= Convert.ToDateTime(fecha);
+                txt_Name.Text = grid_Cliente.CurrentRow.Cells[0].Value.ToString();
+                txt_Apellido.Text = grid_Cliente.CurrentRow.Cells[1].Value.ToString();
+                txt_Tel.Text = grid_Cliente.CurrentRow.Cells[2].Value.ToString();
+                txt_Mail.Text = grid_Cliente.CurrentRow.Cells[3].Value.ToString();
+                txt_Calendario.SelectionStart = dateTime;
+                txt_Calendario.SelectionEnd = dateTime;
+            }
+            catch (Exception)
+            {
+                
+            }
+                bttn_Save.Enabled = false;
 
         }
 
@@ -147,6 +156,7 @@ namespace Tutankacuts
                 try
                 {
                     SqlCommand sql = new SqlCommand(String.Format("DELETE FROM [dbo].[Client] WHERE Tel='{0}'", txt_Tel.Text), conexion);
+                    conexion.Close();
                     conexion.Open();
                     sql.ExecuteNonQuery();
                     MessageBox.Show("Se ha eliminado el Cliente.", "Eliminacion completa", MessageBoxButtons.OK, MessageBoxIcon.Information);

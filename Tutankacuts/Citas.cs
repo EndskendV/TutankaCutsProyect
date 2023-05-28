@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Tutankacuts
 {
@@ -30,7 +31,7 @@ namespace Tutankacuts
             switch (id)
             {
                 case 0:
-
+                    //Codigo dfe Inicio
                     Grid_Cita.Rows.Clear();
                     USR = this.Text.ToString().Substring(4);
                     SqlCommand cmd = new SqlCommand(String.Format("SELECT [NameC],[Tel],[FCita],[TimeAtt],[Barbero],[Tipo],[Asist]FROM [dbo].[Citas] {0}", code), conexion);
@@ -71,7 +72,7 @@ namespace Tutankacuts
                     Activacion(0);
                     break;
                 case 2:
-                    //Codigo Custom
+                    //Codigo Custom 7Param
                     Grid_Cita.Rows.Clear();
                     SqlCommand cmd1 = new SqlCommand(code, conexion);
                     conexion.Close(); code = "";
@@ -94,7 +95,7 @@ namespace Tutankacuts
                     cmd1.Dispose(); dr1.Dispose();
                     conexion.Close();
                     break;
-                case 3:  //Codigo Custom
+                case 3:  //Codigo Custom Lectura 2Param
                     Grid_Cita.Rows.Clear();
                     SqlCommand cmd2 = new SqlCommand(code, conexion);
                     conexion.Close(); code = "";
@@ -113,7 +114,46 @@ namespace Tutankacuts
                     conexion.Close();
 
                     break;
-                case 4:
+                case 4://Revisar Campos esten llenos
+                    bool Checked = false;
+                    Checked = string.IsNullOrEmpty(txt_Name.Text) || string.IsNullOrEmpty(txt_Tel.Text) || string.IsNullOrEmpty(txt_Calendario.Text) ||
+                        string.IsNullOrEmpty(Combo_Hrs.Text) || string.IsNullOrEmpty(Combo_Barber.Text) || string.IsNullOrEmpty(Combo_Tipo.Text);
+                    if (Checked == true) MessageBox.Show("Favor de rellenar Todos los campos");
+                    else try
+                        {
+                            if (string.IsNullOrEmpty(Combo_asist.Text)) Combo_asist.SelectedIndex = 0;
+                            string datetime = txt_Calendario.Value.Date.Year.ToString() + "-" + txt_Calendario.Value.Date.Month.ToString() + "-" + txt_Calendario.Value.Date.Day.ToString();
+                            SqlCommand add = new SqlCommand(String.Format("insert into Citas values('{1}','{0}','{2}','{3}','{4}','{5}','{6}')", txt_Tel.Text, txt_Name.Text, datetime
+                                , Combo_Hrs.Text, Combo_Barber.Text, Combo_Tipo.Text, Combo_asist.Text), conexion);
+                            conexion.Open();
+                            add.ExecuteNonQuery();
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.Message);
+                            conexion.Close();
+                            SqlCommand ExAdd = new SqlCommand(String.Format("Insert into Client (Tel,NameC) values ('{0}','{1}')", txt_Tel.Text, txt_Name.Text), conexion);
+                            try
+                            {
+                                conexion.Open();
+                                ExAdd.ExecuteNonQuery();
+                                MessageBox.Show("Actializar los datos del Nuevo Cliente al terminar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                ExAdd.Dispose();
+                                conexion.Close();
+                                Activacion(4);
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show("Error al dar de alta nuevo Cliente");
+                            }
+
+
+                        }
+                    conexion.Close();
+
+                    break;
+                case 5:
+
 
                 default:
                     break;
@@ -149,7 +189,7 @@ namespace Tutankacuts
 
         private void bttn_Seleccionar_Click(object sender, EventArgs e)
         {
-            string name=Grid_Cita.CurrentRow.Cells[0].Value.ToString(),tel= Grid_Cita.CurrentRow.Cells[1].Value.ToString();
+            string name = Grid_Cita.CurrentRow.Cells[0].Value.ToString(), tel = Grid_Cita.CurrentRow.Cells[1].Value.ToString();
             txt_Name.Text = name;
             txt_Tel.Text = tel;
             txt_Calendario.Value = DateTime.Now;
@@ -161,7 +201,26 @@ namespace Tutankacuts
 
         private void bttn_Delete_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void bttn_Save_Click(object sender, EventArgs e)
+        {
+            Activacion(4);
+        }
+
+        private void bttn_Modify_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Citas_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5)
+            {
+                code = String.Format("SELECT[NameC],[Tel],[FCita],[TimeAtt],[Barbero],[Tipo],[Asist] FROM[dbo].[Citas] where(FCita > GETDATE() -1)  and (FCita < GETDATE() )");
+                Activacion(2);
+            }
         }
     }
 }

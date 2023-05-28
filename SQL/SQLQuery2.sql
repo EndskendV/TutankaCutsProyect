@@ -19,7 +19,8 @@ GO
 
 create table Client(NameC varchar(50),APC varchar(50), Tel varchar(15) primary key,
 Mail varchar(50), FNAC date)
-go/*
+go
+/*
 drop Rule NumberRule as @Value like '[0-9]';;--Limita a 15 NUms
 go
 exec sp_unbindrule 'Client.Tel'*/
@@ -32,8 +33,10 @@ create table Citas(Tel varchar(15),NameC varchar(50),FCita date, TimeAtt Time,
 Barbero varchar(50),Tipo varchar(50), Asist varchar(50))
 
 select * from VistaName where Tel like '66481%'
-
+go
 Create view Barberos as Select Nombre  from Usuarios where TipoUSR like 'Barbero'
-
+go
 select * from Barberos
+use tutankacuts
+alter table Citas
 create proc 
