@@ -1,0 +1,5 @@
+Create database TutankacutsDB
+go
+use TutankacutsDB
+go
+create table
