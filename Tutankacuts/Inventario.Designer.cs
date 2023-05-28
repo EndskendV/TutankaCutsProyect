@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -36,34 +35,24 @@
             label1 = new Label();
             txt_Name = new TextBox();
             label2 = new Label();
-            textBox3 = new TextBox();
+            txt_Price = new TextBox();
             label3 = new Label();
-            textBox4 = new TextBox();
+            txt_Units = new TextBox();
             label4 = new Label();
             label7 = new Label();
             txt_Cont = new TextBox();
             label8 = new Label();
             Combo_Item = new ComboBox();
-            comboBox2 = new ComboBox();
-            Name = new DataGridViewTextBoxColumn();
+            Combo_Proov = new ComboBox();
+            grid_Product = new DataGridView();
+            Nombre = new DataGridViewTextBoxColumn();
             Tipo = new DataGridViewTextBoxColumn();
             Contenido = new DataGridViewTextBoxColumn();
             Unidad = new DataGridViewTextBoxColumn();
             Costo = new DataGridViewTextBoxColumn();
             Proov = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)grid_Product).BeginInit();
             SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.BackgroundColor = Color.FromArgb(34, 33, 74);
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Name, Tipo, Contenido, Unidad, Costo, Proov });
-            dataGridView1.Location = new Point(44, 229);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(700, 179);
-            dataGridView1.TabIndex = 0;
             // 
             // button1
             // 
@@ -117,7 +106,7 @@
             txt_Name.Location = new Point(138, 65);
             txt_Name.Name = "txt_Name";
             txt_Name.Size = new Size(164, 23);
-            txt_Name.TabIndex = 6;
+            txt_Name.TabIndex = 1;
             // 
             // label2
             // 
@@ -130,12 +119,12 @@
             label2.TabIndex = 7;
             label2.Text = "Proveedor";
             // 
-            // textBox3
+            // txt_Price
             // 
-            textBox3.Location = new Point(428, 108);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(164, 23);
-            textBox3.TabIndex = 10;
+            txt_Price.Location = new Point(428, 108);
+            txt_Price.Name = "txt_Price";
+            txt_Price.Size = new Size(164, 23);
+            txt_Price.TabIndex = 5;
             // 
             // label3
             // 
@@ -148,12 +137,12 @@
             label3.TabIndex = 9;
             label3.Text = "Precio";
             // 
-            // textBox4
+            // txt_Units
             // 
-            textBox4.Location = new Point(428, 65);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(164, 23);
-            textBox4.TabIndex = 12;
+            txt_Units.Location = new Point(428, 65);
+            txt_Units.Name = "txt_Units";
+            txt_Units.Size = new Size(164, 23);
+            txt_Units.TabIndex = 4;
             // 
             // label4
             // 
@@ -182,7 +171,7 @@
             txt_Cont.Location = new Point(138, 153);
             txt_Cont.Name = "txt_Cont";
             txt_Cont.Size = new Size(164, 23);
-            txt_Cont.TabIndex = 14;
+            txt_Cont.TabIndex = 3;
             // 
             // label8
             // 
@@ -202,21 +191,32 @@
             Combo_Item.Location = new Point(138, 108);
             Combo_Item.Name = "Combo_Item";
             Combo_Item.Size = new Size(164, 23);
-            Combo_Item.TabIndex = 21;
+            Combo_Item.TabIndex = 2;
             // 
-            // comboBox2
+            // Combo_Proov
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Aceite hidratante", "Aceite para barba", "Cera", "Cepillo", "Crema de afeitar", "Gel", "Mascarilla", "Navajas", "Peine", "Pomada", "Shampoo" });
-            comboBox2.Location = new Point(428, 153);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(164, 23);
-            comboBox2.TabIndex = 22;
+            Combo_Proov.FormattingEnabled = true;
+            Combo_Proov.Items.AddRange(new object[] { "Aceite hidratante", "Aceite para barba", "Cera", "Cepillo", "Crema de afeitar", "Gel", "Mascarilla", "Navajas", "Peine", "Pomada", "Shampoo" });
+            Combo_Proov.Location = new Point(428, 153);
+            Combo_Proov.Name = "Combo_Proov";
+            Combo_Proov.Size = new Size(164, 23);
+            Combo_Proov.TabIndex = 6;
             // 
-            // Name
+            // grid_Product
             // 
-            Name.HeaderText = "Nombre";
-            Name.Name = "Name";
+            grid_Product.BackgroundColor = Color.FromArgb(34, 33, 74);
+            grid_Product.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            grid_Product.Columns.AddRange(new DataGridViewColumn[] { Nombre, Tipo, Contenido, Unidad, Costo, Proov });
+            grid_Product.Location = new Point(44, 206);
+            grid_Product.Name = "grid_Product";
+            grid_Product.RowTemplate.Height = 25;
+            grid_Product.Size = new Size(700, 179);
+            grid_Product.TabIndex = 31;
+            // 
+            // Nombre
+            // 
+            Nombre.HeaderText = "Nombre";
+            Nombre.Name = "Nombre";
             // 
             // Tipo
             // 
@@ -249,14 +249,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 33, 74);
             ClientSize = new Size(800, 450);
-            Controls.Add(comboBox2);
+            Controls.Add(grid_Product);
+            Controls.Add(Combo_Proov);
             Controls.Add(Combo_Item);
             Controls.Add(label7);
             Controls.Add(txt_Cont);
             Controls.Add(label8);
-            Controls.Add(textBox4);
+            Controls.Add(txt_Units);
             Controls.Add(label4);
-            Controls.Add(textBox3);
+            Controls.Add(txt_Price);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(txt_Name);
@@ -265,17 +266,15 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(dataGridView1);
             Name = "Inventario";
             Text = "Inventario";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += Inventario_Load;
+            ((System.ComponentModel.ISupportInitialize)grid_Product).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private DataGridView dataGridView1;
         private Button button1;
         private Button button2;
         private Button button3;
@@ -283,16 +282,17 @@
         private Label label1;
         private TextBox txt_Name;
         private Label label2;
-        private TextBox textBox3;
+        private TextBox txt_Price;
         private Label label3;
-        private TextBox textBox4;
+        private TextBox txt_Units;
         private Label label4;
         private Label label7;
         private TextBox txt_Cont;
         private Label label8;
         private ComboBox Combo_Item;
-        private ComboBox comboBox2;
-        private DataGridViewTextBoxColumn Name;
+        private ComboBox Combo_Proov;
+        private DataGridView grid_Product;
+        private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Tipo;
         private DataGridViewTextBoxColumn Contenido;
         private DataGridViewTextBoxColumn Unidad;
