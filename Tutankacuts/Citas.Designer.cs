@@ -34,6 +34,14 @@
             bttn_Delete = new Button();
             bttn_Cancel = new Button();
             Grid_Cita = new DataGridView();
+            Nombre = new DataGridViewTextBoxColumn();
+            Tel = new DataGridViewTextBoxColumn();
+            Fecha = new DataGridViewTextBoxColumn();
+            Hora = new DataGridViewTextBoxColumn();
+            Barber = new DataGridViewTextBoxColumn();
+            Corte = new DataGridViewTextBoxColumn();
+            Asist = new DataGridViewTextBoxColumn();
+            CitaNum = new DataGridViewTextBoxColumn();
             txt_Name = new TextBox();
             label2 = new Label();
             label3 = new Label();
@@ -49,14 +57,8 @@
             bttn_Consult = new Button();
             bttn_Seleccionar = new Button();
             txt_Tel = new TextBox();
-            Nombre = new DataGridViewTextBoxColumn();
-            Tel = new DataGridViewTextBoxColumn();
-            Fecha = new DataGridViewTextBoxColumn();
-            Hora = new DataGridViewTextBoxColumn();
-            Barber = new DataGridViewTextBoxColumn();
-            Corte = new DataGridViewTextBoxColumn();
-            Asist = new DataGridViewTextBoxColumn();
-            CitaNum = new DataGridViewTextBoxColumn();
+            lbl_ID = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)Grid_Cita).BeginInit();
             SuspendLayout();
             // 
@@ -122,6 +124,52 @@
             Grid_Cita.RowTemplate.Height = 25;
             Grid_Cita.Size = new Size(734, 163);
             Grid_Cita.TabIndex = 50;
+            Grid_Cita.KeyPress += Grid_Cita_KeyPress;
+            // 
+            // Nombre
+            // 
+            Nombre.HeaderText = "Nombre";
+            Nombre.Name = "Nombre";
+            // 
+            // Tel
+            // 
+            Tel.HeaderText = "Telefono";
+            Tel.Name = "Tel";
+            // 
+            // Fecha
+            // 
+            Fecha.HeaderText = "Fecha";
+            Fecha.Name = "Fecha";
+            Fecha.Width = 80;
+            // 
+            // Hora
+            // 
+            Hora.HeaderText = "Hora";
+            Hora.Name = "Hora";
+            Hora.Width = 50;
+            // 
+            // Barber
+            // 
+            Barber.HeaderText = "Barbero";
+            Barber.Name = "Barber";
+            // 
+            // Corte
+            // 
+            Corte.HeaderText = "Corte";
+            Corte.Name = "Corte";
+            // 
+            // Asist
+            // 
+            Asist.HeaderText = "Asistencia";
+            Asist.Name = "Asist";
+            Asist.Width = 70;
+            // 
+            // CitaNum
+            // 
+            CitaNum.HeaderText = "Cita Num";
+            CitaNum.Name = "CitaNum";
+            CitaNum.ReadOnly = true;
+            CitaNum.Width = 40;
             // 
             // txt_Name
             // 
@@ -224,7 +272,7 @@
             // Combo_asist
             // 
             Combo_asist.FormattingEnabled = true;
-            Combo_asist.Items.AddRange(new object[] { "Si", "No", "Retraso" });
+            Combo_asist.Items.AddRange(new object[] { "No", "Si", "Retraso", "Cancelo" });
             Combo_asist.Location = new Point(453, 149);
             Combo_asist.Name = "Combo_asist";
             Combo_asist.Size = new Size(164, 23);
@@ -272,48 +320,29 @@
             txt_Tel.TextAlign = HorizontalAlignment.Center;
             txt_Tel.TextChanged += txt_Tel_TextChanged;
             // 
-            // Nombre
+            // lbl_ID
             // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.Name = "Nombre";
+            lbl_ID.AutoSize = true;
+            lbl_ID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_ID.ForeColor = Color.Gainsboro;
+            lbl_ID.Location = new Point(80, 251);
+            lbl_ID.Name = "lbl_ID";
+            lbl_ID.Size = new Size(19, 21);
+            lbl_ID.TabIndex = 52;
+            lbl_ID.Text = "#";
+            lbl_ID.UseMnemonic = false;
             // 
-            // Tel
+            // label7
             // 
-            Tel.HeaderText = "Telefono";
-            Tel.Name = "Tel";
-            // 
-            // Fecha
-            // 
-            Fecha.HeaderText = "Fecha";
-            Fecha.Name = "Fecha";
-            // 
-            // Hora
-            // 
-            Hora.HeaderText = "Hora";
-            Hora.Name = "Hora";
-            // 
-            // Barber
-            // 
-            Barber.HeaderText = "Barbero";
-            Barber.Name = "Barber";
-            // 
-            // Corte
-            // 
-            Corte.HeaderText = "Corte";
-            Corte.Name = "Corte";
-            // 
-            // Asist
-            // 
-            Asist.HeaderText = "Asistencia";
-            Asist.Name = "Asist";
-            Asist.Width = 50;
-            // 
-            // CitaNum
-            // 
-            CitaNum.HeaderText = "Cita Num";
-            CitaNum.Name = "CitaNum";
-            CitaNum.ReadOnly = true;
-            CitaNum.Width = 40;
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.ForeColor = Color.Gainsboro;
+            label7.Location = new Point(46, 251);
+            label7.Name = "label7";
+            label7.Size = new Size(28, 21);
+            label7.TabIndex = 51;
+            label7.Text = "ID:";
+            label7.UseMnemonic = false;
             // 
             // Citas
             // 
@@ -321,6 +350,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 33, 74);
             ClientSize = new Size(800, 450);
+            Controls.Add(lbl_ID);
+            Controls.Add(label7);
             Controls.Add(txt_Tel);
             Controls.Add(bttn_Seleccionar);
             Controls.Add(bttn_Consult);
@@ -382,5 +413,7 @@
         private DataGridViewTextBoxColumn Corte;
         private DataGridViewTextBoxColumn Asist;
         private DataGridViewTextBoxColumn CitaNum;
+        private Label lbl_ID;
+        private Label label7;
     }
 }

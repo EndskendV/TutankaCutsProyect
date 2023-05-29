@@ -20,23 +20,25 @@ GO
 create table Client(NameC varchar(50),APC varchar(50), Tel varchar(15) primary key,
 Mail varchar(50), FNAC date)
 go
-/*
-drop Rule NumberRule as @Value like '[0-9]';;--Limita a 15 NUms
-go
-exec sp_unbindrule 'Client.Tel'*/
 go
 alter table Client add constraint CheckDate Check(FNAC<getdate())
 go
 create view VistaName as Select Tel,NameC from Client
 go
+use tutankacuts
 create table Citas(Tel varchar(15),NameC varchar(50),FCita date, TimeAtt Time,
-Barbero varchar(50),Tipo varchar(50), Asist varchar(50))
+Barbero varchar(50),Tipo varchar(50), Asist varchar(50),CitaNum int identity(1,1) primary key)
 
-select * from VistaName where Tel like '66481%'
+alter table dbo.Citas add constraint chk_Tel2 check (Tel not like '%[a-Z]%')
+alter table Client add constraint chk_tel check (Tel not like '%[a-Z]%')
+go
+insert into Citas (Tel )values ('667f6666')
+select * from Citas
+
+select * from VistaName where Tel like '%66481%'
 go
 Create view Barberos as Select Nombre  from Usuarios where TipoUSR like 'Barbero'
 go
 select * from Barberos
-use tutankacuts
-alter table Citas
-create proc 
+
+

@@ -76,7 +76,7 @@ namespace Tutankacuts
         private void bttn_Modify_Click(object sender, EventArgs e)
         {
             conexion.Open();
-            SqlCommand sql = new SqlCommand(String.Format("UPDATE Usuarios set PSWRD='{0}' where USR='{1}'", txt_Passwrd.Text, txt_User.Text), conexion);
+            SqlCommand sql = new(string.Format("UPDATE Usuarios set PSWRD='{0}' where USR='{1}'", txt_Passwrd.Text, txt_User.Text), conexion);
             sql.ExecuteNonQuery();
             MessageBox.Show("Contraseña Actualizada con exito", "OK", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             conexion.Close();

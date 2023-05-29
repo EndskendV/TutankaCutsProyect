@@ -122,7 +122,8 @@ namespace Tutankacuts
             }
             catch (Exception)
             {
-                MessageBox.Show("El telefono ya se encuentra registrado", "Favor revise Datos", MessageBoxButtons.OK, MessageBoxIcon.Error); conexion.Close();
+
+                MessageBox.Show("El telefono Invalido Revise datos", "Favor revise Datos", MessageBoxButtons.OK, MessageBoxIcon.Error); conexion.Close();
             }
             conexion.Close();
             Activacion(1);
