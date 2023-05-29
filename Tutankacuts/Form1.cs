@@ -136,7 +136,7 @@ namespace Tutankacuts
             CurrentOtherForm.Close();
             Reset();
         }
-       
+
         private void Reset()
         {
             DisableButton();

@@ -222,37 +222,46 @@ namespace Tutankacuts
         {
             try
             {
-                string name = Grid_Cita.CurrentRow.Cells[0].Value.ToString(), tel = Grid_Cita.CurrentRow.Cells[1].Value.ToString(),
-                    Feccha = Grid_Cita.CurrentRow.Cells[2].Value.ToString(), Barber = Grid_Cita.CurrentRow.Cells[4].Value.ToString(),
-                    Tipo = Grid_Cita.CurrentRow.Cells[5].Value.ToString(), Asist = Grid_Cita.CurrentRow.Cells[6].Value.ToString(),
-                    IDd = Grid_Cita.CurrentRow.Cells[7].Value.ToString(), hora = Grid_Cita.CurrentRow.Cells[3].Value.ToString();
+                string name = Grid_Cita.CurrentRow.Cells[0].Value.ToString(), tel = Grid_Cita.CurrentRow.Cells[1].Value.ToString();
+                if (string.IsNullOrEmpty(Grid_Cita.CurrentRow.Cells[2].Value.ToString()))
+                {
+
+                }
+                else
+                {
+                    string
+                        Feccha = Grid_Cita.CurrentRow.Cells[2].Value.ToString(), Barber = Grid_Cita.CurrentRow.Cells[4].Value.ToString(),
+                        Tipo = Grid_Cita.CurrentRow.Cells[5].Value.ToString(), Asist = Grid_Cita.CurrentRow.Cells[6].Value.ToString(),
+                        IDd = Grid_Cita.CurrentRow.Cells[7].Value.ToString(), hora = Grid_Cita.CurrentRow.Cells[3].Value.ToString();
+                    
+                    Combo_Tipo.Text = Tipo;
+                    Combo_Hrs.Text = hora;
+                    Combo_Barber.Text = Barber;
+                    Combo_asist.Text = Asist;
+                    lbl_ID.Text = IDd;
+                    txt_Calendario.Text = Feccha;
+
+                }
                 txt_Name.Text = name; txt_Name.Enabled = false;
-                txt_Tel.Text = tel;txt_Tel.Enabled = false;
+                txt_Tel.Text = tel; txt_Tel.Enabled = false;
                 code = String.Format("SELECT [NameC],[Tel],[FCita],[TimeAtt],[Barbero],[Tipo],[Asist],CitaNum FROM [dbo].[Citas] where NameC like '{0}' and Tel like '{1}'", txt_Name.Text, txt_Tel.Text
                 );
-                Combo_Tipo.Text = Tipo;
-                Combo_Hrs.Text = hora;
-                Combo_Barber.Text = Barber;
-                Combo_asist.Text = Asist;
-                lbl_ID.Text = IDd;
-                txt_Calendario.Text = Feccha;
-
-
                 Activacion(2);
-                Thread.Sleep(50);
-                int numeroBuscado = int.Parse(lbl_ID.Text); // Número que deseas buscar en el grid
+                    Thread.Sleep(50);
+                    int numeroBuscado = int.Parse(lbl_ID.Text); // Número que deseas buscar en el grid
 
-                foreach (DataGridViewRow row in Grid_Cita.Rows)
-                {
-                    foreach (DataGridViewCell cell in row.Cells)
+                    foreach (DataGridViewRow row in Grid_Cita.Rows)
                     {
-                        if (cell.Value != null && cell.Value.ToString() == numeroBuscado.ToString())
+                        foreach (DataGridViewCell cell in row.Cells)
                         {
-                            row.DefaultCellStyle.BackColor = Color.Aqua; // Pintar toda la fila
-                            break;
+                            if (cell.Value != null && cell.Value.ToString() == numeroBuscado.ToString())
+                            {
+                                row.DefaultCellStyle.BackColor = Color.Aqua; // Pintar toda la fila
+                                break;
+                            }
                         }
                     }
-                }
+                
             }
             catch (Exception)
             {

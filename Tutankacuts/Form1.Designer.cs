@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             panelMenu = new Panel();
             Salir = new FontAwesome.Sharp.IconButton();
+            Venta = new FontAwesome.Sharp.IconButton();
             Ajustes = new FontAwesome.Sharp.IconButton();
             Clientes = new FontAwesome.Sharp.IconButton();
             Empleados = new FontAwesome.Sharp.IconButton();
@@ -47,7 +48,6 @@
             lbfecha = new Label();
             lbhora = new Label();
             Hora = new System.Windows.Forms.Timer(components);
-            Venta = new FontAwesome.Sharp.IconButton();
             panelMenu.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)BtnHome).BeginInit();
@@ -94,6 +94,27 @@
             Salir.TextImageRelation = TextImageRelation.ImageBeforeText;
             Salir.UseVisualStyleBackColor = true;
             Salir.Click += Salir_Click;
+            // 
+            // Venta
+            // 
+            Venta.Dock = DockStyle.Top;
+            Venta.FlatAppearance.BorderSize = 0;
+            Venta.FlatStyle = FlatStyle.Flat;
+            Venta.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Venta.ForeColor = Color.Gainsboro;
+            Venta.IconChar = FontAwesome.Sharp.IconChar.SackDollar;
+            Venta.IconColor = Color.WhiteSmoke;
+            Venta.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            Venta.IconSize = 30;
+            Venta.ImageAlign = ContentAlignment.MiddleLeft;
+            Venta.Location = new Point(10, 440);
+            Venta.Name = "Venta";
+            Venta.Size = new Size(210, 60);
+            Venta.TabIndex = 6;
+            Venta.Text = "Ventas";
+            Venta.TextImageRelation = TextImageRelation.ImageBeforeText;
+            Venta.UseVisualStyleBackColor = true;
+            Venta.Click += Venta_Click;
             // 
             // Ajustes
             // 
@@ -307,27 +328,6 @@
             Hora.Enabled = true;
             Hora.Tick += Hora_Tick;
             // 
-            // Venta
-            // 
-            Venta.Dock = DockStyle.Top;
-            Venta.FlatAppearance.BorderSize = 0;
-            Venta.FlatStyle = FlatStyle.Flat;
-            Venta.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Venta.ForeColor = Color.Gainsboro;
-            Venta.IconChar = FontAwesome.Sharp.IconChar.SackDollar;
-            Venta.IconColor = Color.WhiteSmoke;
-            Venta.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            Venta.IconSize = 30;
-            Venta.ImageAlign = ContentAlignment.MiddleLeft;
-            Venta.Location = new Point(10, 440);
-            Venta.Name = "Venta";
-            Venta.Size = new Size(210, 60);
-            Venta.TabIndex = 6;
-            Venta.Text = "Ventas";
-            Venta.TextImageRelation = TextImageRelation.ImageBeforeText;
-            Venta.UseVisualStyleBackColor = true;
-            Venta.Click += Venta_Click;
-            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -338,6 +338,7 @@
             Controls.Add(panel1);
             Controls.Add(panelMenu);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Home";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
