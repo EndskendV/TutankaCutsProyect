@@ -35,7 +35,6 @@
             bttn_Cancel = new Button();
             Grid_Cita = new DataGridView();
             txt_Nombre = new TextBox();
-            textBox2 = new TextBox();
             label2 = new Label();
             label5 = new Label();
             label6 = new Label();
@@ -113,16 +112,6 @@
             txt_Nombre.TabIndex = 6;
             txt_Nombre.TextAlign = HorizontalAlignment.Center;
             // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(120, 40);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(164, 23);
-            textBox2.TabIndex = 8;
-            textBox2.Tag = "";
-            textBox2.Text = "000-000-0000";
-            textBox2.TextAlign = HorizontalAlignment.Center;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -198,6 +187,14 @@
             Combo_Product.Size = new Size(164, 23);
             Combo_Product.TabIndex = 55;
             // 
+            Txt_Tel.Location = new Point(120, 39);
+            Txt_Tel.Name = "Txt_Tel";
+            Txt_Tel.Size = new Size(164, 23);
+            Txt_Tel.TabIndex = 55;
+            Txt_Tel.Tag = "";
+            Txt_Tel.Text = "000-000-0000";
+            Txt_Tel.TextAlign = HorizontalAlignment.Center;
+            // 
             // Ventas
             // 
             AcceptButton = bttn_Save;
@@ -205,13 +202,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 33, 74);
             ClientSize = new Size(800, 450);
+<<<<<<< HEAD
             Controls.Add(Combo_Product);
+=======
+            Controls.Add(Txt_Tel);
             Controls.Add(lbl_ID);
             Controls.Add(label7);
             Controls.Add(Combo_Cant);
             Controls.Add(label6);
             Controls.Add(label5);
-            Controls.Add(textBox2);
             Controls.Add(label2);
             Controls.Add(txt_Nombre);
             Controls.Add(Grid_Cita);
@@ -237,14 +236,20 @@
         private Button bttn_Cancel;
         private DataGridView Grid_Cita;
         private TextBox txt_Nombre;
-        private TextBox textBox2;
         private Label label2;
         private Label label5;
         private Label label6;
         private ComboBox Combo_Barber;
+ 
         private ComboBox Combo_Cant;
         private Label lbl_ID;
         private Label label7;
         private ComboBox Combo_Product;
+ 
+        private ComboBox Combo_Tipo;
+        private Label lbl_ID;
+        private Label label7;
+        private TextBox Txt_Tel;
+>>>>>>> c108d02bd921a5ed3346d4df70a30362671f61a6
     }
 }

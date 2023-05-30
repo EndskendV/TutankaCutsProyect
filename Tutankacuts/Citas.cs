@@ -354,7 +354,7 @@ namespace Tutankacuts
         private void Grid_Cita_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             txt_Name.Text = Grid_Cita.CurrentRow.Cells[0].Value.ToString();
-            txt_Tel.Text= Grid_Cita.CurrentRow.Cells[1].Value.ToString() ;  
+            txt_Tel.Text = Grid_Cita.CurrentRow.Cells[1].Value.ToString();
         }
     }
 }

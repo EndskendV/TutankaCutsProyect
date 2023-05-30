@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hpx11\\Desktop\\Tutankacuts\\Tutankacuts\\Tutankacuts.csproj": {}
+    "C:\\Users\\CALIPSO\\Source\\Repos\\TutankaCutsProyect\\Tutankacuts\\Tutankacuts.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hpx11\\Desktop\\Tutankacuts\\Tutankacuts\\Tutankacuts.csproj": {
+    "C:\\Users\\CALIPSO\\Source\\Repos\\TutankaCutsProyect\\Tutankacuts\\Tutankacuts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hpx11\\Desktop\\Tutankacuts\\Tutankacuts\\Tutankacuts.csproj",
+        "projectUniqueName": "C:\\Users\\CALIPSO\\Source\\Repos\\TutankaCutsProyect\\Tutankacuts\\Tutankacuts.csproj",
         "projectName": "Tutankacuts",
-        "projectPath": "C:\\Users\\hpx11\\Desktop\\Tutankacuts\\Tutankacuts\\Tutankacuts.csproj",
-        "packagesPath": "C:\\Users\\hpx11\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hpx11\\Desktop\\Tutankacuts\\Tutankacuts\\obj\\",
+        "projectPath": "C:\\Users\\CALIPSO\\Source\\Repos\\TutankaCutsProyect\\Tutankacuts\\Tutankacuts.csproj",
+        "packagesPath": "C:\\Users\\CALIPSO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CALIPSO\\Source\\Repos\\TutankaCutsProyect\\Tutankacuts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hpx11\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\CALIPSO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

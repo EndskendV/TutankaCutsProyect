@@ -78,7 +78,7 @@
             bttn_Save.Location = new Point(695, 39);
             bttn_Save.Name = "bttn_Save";
             bttn_Save.Size = new Size(75, 23);
-            bttn_Save.TabIndex = 1;
+            bttn_Save.TabIndex = 8;
             bttn_Save.Text = "Agregar";
             bttn_Save.UseVisualStyleBackColor = true;
             bttn_Save.Click += bttn_Save_Click;
@@ -88,7 +88,7 @@
             bttn_Modify.Location = new Point(695, 91);
             bttn_Modify.Name = "bttn_Modify";
             bttn_Modify.Size = new Size(75, 23);
-            bttn_Modify.TabIndex = 2;
+            bttn_Modify.TabIndex = 9;
             bttn_Modify.Text = "Modificar";
             bttn_Modify.UseVisualStyleBackColor = true;
             bttn_Modify.Click += bttn_Modify_Click;
@@ -98,7 +98,7 @@
             bttn_Delete.Location = new Point(695, 141);
             bttn_Delete.Name = "bttn_Delete";
             bttn_Delete.Size = new Size(75, 23);
-            bttn_Delete.TabIndex = 3;
+            bttn_Delete.TabIndex = 10;
             bttn_Delete.Text = "Cancelar";
             bttn_Delete.UseVisualStyleBackColor = true;
             bttn_Delete.Click += bttn_Delete_Click;
@@ -108,7 +108,7 @@
             bttn_Cancel.Location = new Point(695, 195);
             bttn_Cancel.Name = "bttn_Cancel";
             bttn_Cancel.Size = new Size(75, 23);
-            bttn_Cancel.TabIndex = 4;
+            bttn_Cancel.TabIndex = 11;
             bttn_Cancel.Text = "Salir";
             bttn_Cancel.UseVisualStyleBackColor = true;
             bttn_Cancel.Click += bttn_Cancel_Click;
