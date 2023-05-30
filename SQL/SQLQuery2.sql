@@ -42,8 +42,12 @@ go
 select * from Barberos
 
 use Tutankacuts
-create table Productos(IDProduct int identity(1,1) primary key, NameProducto varchar(50), Unidades int default 0,
-TipoPrd varchar(50),Price money, Contenido varchar(50),Proveedor varchar(50))
+create table Productos(IDProduct int identity(1,1) primary key, NameProducto varchar(50),
+Unidades int default 0,TipoPrd varchar(50),Price money, Contenido varchar(50),
+Proveedor varchar(50))
+alter table Productos add constraint Chk_Unidades check(Unidades>=0)
+insert into Productos values ('Shampoo',40,'Shampoo',65,'245 mL','P1'),
+('Jabon',default,'Jabon',65,'45 g','P2')
 
 go
 CREATE FUNCTION CalcularPago (@IDProduct int, @Cantidad int)
