@@ -124,6 +124,7 @@
             Grid_Cita.RowTemplate.Height = 25;
             Grid_Cita.Size = new Size(734, 163);
             Grid_Cita.TabIndex = 50;
+            Grid_Cita.CellContentClick += Grid_Cita_CellContentClick;
             Grid_Cita.KeyPress += Grid_Cita_KeyPress;
             // 
             // Nombre

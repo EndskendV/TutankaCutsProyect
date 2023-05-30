@@ -28,67 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
             label1 = new Label();
             txt_Name = new TextBox();
             label2 = new Label();
             txt_Price = new TextBox();
             label3 = new Label();
-            txt_Units = new TextBox();
             label4 = new Label();
             label7 = new Label();
             txt_Cont = new TextBox();
             label8 = new Label();
-            Combo_Item = new ComboBox();
+            Combo_Tipo = new ComboBox();
             Combo_Proov = new ComboBox();
-            grid_Product = new DataGridView();
+            Grid_Product = new DataGridView();
+            bttn_Cancel = new Button();
+            bttn_Delete = new Button();
+            bttn_Modify = new Button();
+            bttn_Save = new Button();
+            Combo_Units = new ComboBox();
             Nombre = new DataGridViewTextBoxColumn();
             Tipo = new DataGridViewTextBoxColumn();
             Contenido = new DataGridViewTextBoxColumn();
             Unidad = new DataGridViewTextBoxColumn();
             Costo = new DataGridViewTextBoxColumn();
             Proov = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)grid_Product).BeginInit();
+            ID = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)Grid_Product).BeginInit();
             SuspendLayout();
-            // 
-            // button1
-            // 
-            button1.Location = new Point(669, 42);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 1;
-            button1.Text = "Agregar";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(669, 86);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 2;
-            button2.Text = "Modificar";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(669, 131);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 3;
-            button3.Text = "Eliminar";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(669, 177);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 4;
-            button4.Text = "Canecelar";
-            button4.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -137,13 +102,6 @@
             label3.TabIndex = 9;
             label3.Text = "Precio";
             // 
-            // txt_Units
-            // 
-            txt_Units.Location = new Point(428, 65);
-            txt_Units.Name = "txt_Units";
-            txt_Units.Size = new Size(164, 23);
-            txt_Units.TabIndex = 4;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -184,34 +142,80 @@
             label8.TabIndex = 13;
             label8.Text = "Contenido";
             // 
-            // Combo_Item
+            // Combo_Tipo
             // 
-            Combo_Item.FormattingEnabled = true;
-            Combo_Item.Items.AddRange(new object[] { "Aceite hidratante", "Aceite para barba", "Cera", "Cepillo", "Crema de afeitar", "Gel", "Mascarilla", "Navajas", "Peine", "Pomada", "Shampoo" });
-            Combo_Item.Location = new Point(138, 108);
-            Combo_Item.Name = "Combo_Item";
-            Combo_Item.Size = new Size(164, 23);
-            Combo_Item.TabIndex = 2;
+            Combo_Tipo.FormattingEnabled = true;
+            Combo_Tipo.Items.AddRange(new object[] { "Aceite hidratante", "Aceite para barba", "Cera", "Cepillo", "Crema de afeitar", "Gel", "Mascarilla", "Navajas", "Peine", "Pomada", "Shampoo" });
+            Combo_Tipo.Location = new Point(138, 108);
+            Combo_Tipo.Name = "Combo_Tipo";
+            Combo_Tipo.Size = new Size(164, 23);
+            Combo_Tipo.TabIndex = 2;
             // 
             // Combo_Proov
             // 
             Combo_Proov.FormattingEnabled = true;
-            Combo_Proov.Items.AddRange(new object[] { "Aceite hidratante", "Aceite para barba", "Cera", "Cepillo", "Crema de afeitar", "Gel", "Mascarilla", "Navajas", "Peine", "Pomada", "Shampoo" });
+            Combo_Proov.Items.AddRange(new object[] { "P1", "P2", "P3", "P4" });
             Combo_Proov.Location = new Point(428, 153);
             Combo_Proov.Name = "Combo_Proov";
             Combo_Proov.Size = new Size(164, 23);
             Combo_Proov.TabIndex = 6;
             // 
-            // grid_Product
+            // Grid_Product
             // 
-            grid_Product.BackgroundColor = Color.FromArgb(34, 33, 74);
-            grid_Product.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grid_Product.Columns.AddRange(new DataGridViewColumn[] { Nombre, Tipo, Contenido, Unidad, Costo, Proov });
-            grid_Product.Location = new Point(44, 206);
-            grid_Product.Name = "grid_Product";
-            grid_Product.RowTemplate.Height = 25;
-            grid_Product.Size = new Size(700, 179);
-            grid_Product.TabIndex = 31;
+            Grid_Product.BackgroundColor = Color.FromArgb(34, 33, 74);
+            Grid_Product.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Grid_Product.Columns.AddRange(new DataGridViewColumn[] { Nombre, Tipo, Contenido, Unidad, Costo, Proov, ID });
+            Grid_Product.Location = new Point(44, 206);
+            Grid_Product.Name = "Grid_Product";
+            Grid_Product.RowTemplate.Height = 25;
+            Grid_Product.Size = new Size(700, 179);
+            Grid_Product.TabIndex = 31;
+            Grid_Product.CellContentClick += Grid_Product_CellContentClick;
+            // 
+            // bttn_Cancel
+            // 
+            bttn_Cancel.Location = new Point(681, 153);
+            bttn_Cancel.Name = "bttn_Cancel";
+            bttn_Cancel.Size = new Size(75, 23);
+            bttn_Cancel.TabIndex = 35;
+            bttn_Cancel.Text = "Cancelar";
+            bttn_Cancel.UseVisualStyleBackColor = true;
+            // 
+            // bttn_Delete
+            // 
+            bttn_Delete.Location = new Point(681, 107);
+            bttn_Delete.Name = "bttn_Delete";
+            bttn_Delete.Size = new Size(75, 23);
+            bttn_Delete.TabIndex = 34;
+            bttn_Delete.Text = "Eliminar";
+            bttn_Delete.UseVisualStyleBackColor = true;
+            // 
+            // bttn_Modify
+            // 
+            bttn_Modify.Location = new Point(681, 73);
+            bttn_Modify.Name = "bttn_Modify";
+            bttn_Modify.Size = new Size(75, 23);
+            bttn_Modify.TabIndex = 33;
+            bttn_Modify.Text = "Modificar";
+            bttn_Modify.UseVisualStyleBackColor = true;
+            // 
+            // bttn_Save
+            // 
+            bttn_Save.Location = new Point(681, 44);
+            bttn_Save.Name = "bttn_Save";
+            bttn_Save.Size = new Size(75, 23);
+            bttn_Save.TabIndex = 32;
+            bttn_Save.Text = "Agregar";
+            bttn_Save.UseVisualStyleBackColor = true;
+            // 
+            // Combo_Units
+            // 
+            Combo_Units.FormattingEnabled = true;
+            Combo_Units.Items.AddRange(new object[] { "P1", "P2", "P3", "P4" });
+            Combo_Units.Location = new Point(428, 65);
+            Combo_Units.Name = "Combo_Units";
+            Combo_Units.Size = new Size(164, 23);
+            Combo_Units.TabIndex = 36;
             // 
             // Nombre
             // 
@@ -243,60 +247,67 @@
             Proov.HeaderText = "Proveedor";
             Proov.Name = "Proov";
             // 
+            // ID
+            // 
+            ID.HeaderText = "ID";
+            ID.Name = "ID";
+            ID.Width = 45;
+            // 
             // Inventario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 33, 74);
             ClientSize = new Size(800, 450);
-            Controls.Add(grid_Product);
+            Controls.Add(Combo_Units);
+            Controls.Add(bttn_Cancel);
+            Controls.Add(bttn_Delete);
+            Controls.Add(bttn_Modify);
+            Controls.Add(bttn_Save);
+            Controls.Add(Grid_Product);
             Controls.Add(Combo_Proov);
-            Controls.Add(Combo_Item);
+            Controls.Add(Combo_Tipo);
             Controls.Add(label7);
             Controls.Add(txt_Cont);
             Controls.Add(label8);
-            Controls.Add(txt_Units);
             Controls.Add(label4);
             Controls.Add(txt_Price);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(txt_Name);
             Controls.Add(label1);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
             Name = "Inventario";
             Text = "Inventario";
             Load += Inventario_Load;
-            ((System.ComponentModel.ISupportInitialize)grid_Product).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Grid_Product).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
         private Label label1;
         private TextBox txt_Name;
         private Label label2;
         private TextBox txt_Price;
         private Label label3;
-        private TextBox txt_Units;
         private Label label4;
         private Label label7;
         private TextBox txt_Cont;
         private Label label8;
-        private ComboBox Combo_Item;
+        private ComboBox Combo_Tipo;
         private ComboBox Combo_Proov;
-        private DataGridView grid_Product;
+        private DataGridView Grid_Product;
+        private Button bttn_Cancel;
+        private Button bttn_Delete;
+        private Button bttn_Modify;
+        private Button bttn_Save;
+        private ComboBox Combo_Units;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Tipo;
         private DataGridViewTextBoxColumn Contenido;
         private DataGridViewTextBoxColumn Unidad;
         private DataGridViewTextBoxColumn Costo;
         private DataGridViewTextBoxColumn Proov;
+        private DataGridViewTextBoxColumn ID;
     }
 }

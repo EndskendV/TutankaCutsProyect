@@ -41,4 +41,25 @@ Create view Barberos as Select Nombre  from Usuarios where TipoUSR like 'Barbero
 go
 select * from Barberos
 
+use Tutankacuts
+create table Productos(IDProduct int identity(1,1) primary key, NameProducto varchar(50), Unidades int default 0,
+TipoPrd varchar(50),Price money, Contenido varchar(50),Proveedor varchar(50))
 
+go
+CREATE FUNCTION CalcularPago (@IDProduct int, @Cantidad int)
+RETURNS money
+AS
+BEGIN
+    DECLARE @Price money;
+    SELECT @Price = Price FROM Productos WHERE IDProduct = @IDProduct;
+    RETURN @Price * @Cantidad;
+END
+go
+CREATE TABLE Venta (
+    IDVenta int identity(1,1) primary key,
+    IDProduct int foreign key references Productos(IDProduct),
+    Cantidad int,
+    Pago AS dbo.CalcularPago(IDProduct, Cantidad),
+    RecibioUSR varchar(50) foreign key references Usuarios(USR),
+	FechaVenta date default getdate()
+);

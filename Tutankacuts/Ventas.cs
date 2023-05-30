@@ -16,5 +16,20 @@ namespace Tutankacuts
         {
             InitializeComponent();
         }
+
+        private void Ventas_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bttn_Save_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

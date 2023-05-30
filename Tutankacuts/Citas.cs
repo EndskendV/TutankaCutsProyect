@@ -35,7 +35,7 @@ namespace Tutankacuts
                     //Codigo dfe Inicio
                     Grid_Cita.Rows.Clear();
                     USR = this.Text.ToString().Substring(4);
-                    SqlCommand cmd = new(String.Format("SELECT [NameC],[Tel],[FCita],[TimeAtt],[Barbero],[Tipo],[Asist],CitaNum FROM [dbo].[Citas] {0}", code), conexion);
+                    SqlCommand cmd = new SqlCommand(String.Format("SELECT [NameC],[Tel],[FCita],[TimeAtt],[Barbero],[Tipo],[Asist],CitaNum FROM [dbo].[Citas] {0}", code), conexion);
                     conexion.Close(); code = "";
                     conexion.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -76,13 +76,13 @@ namespace Tutankacuts
                 case 2:
                     //Codigo Custom 7Param
                     Grid_Cita.Rows.Clear();
-                    SqlCommand cmd1 = new(code, conexion);
-                    conexion.Close(); code = "";
+                    conexion.Close();
                     conexion.Open();
+                    SqlCommand cmd1 = new SqlCommand(code, conexion);
                     SqlDataReader dr1 = cmd1.ExecuteReader();
                     while (dr1.Read())
                     {
-                        DataGridViewRow row = new();
+                        DataGridViewRow row = new DataGridViewRow();
                         row.CreateCells(Grid_Cita);
                         row.Cells[0].Value = dr1[0].ToString();
                         row.Cells[1].Value = dr1[1].ToString();
@@ -95,6 +95,7 @@ namespace Tutankacuts
 
                         Grid_Cita.Rows.Add(row);
                     }
+                    code = "";
                     cmd1.Dispose(); dr1.Dispose();
                     conexion.Close();
                     break;
@@ -108,8 +109,8 @@ namespace Tutankacuts
                     {
                         DataGridViewRow row = new DataGridViewRow();
                         row.CreateCells(Grid_Cita);
-                        row.Cells[0].Value = dr2[0].ToString();
-                        row.Cells[1].Value = dr2[1].ToString();
+                        row.Cells[0].Value = dr2[1].ToString();
+                        row.Cells[1].Value = dr2[0].ToString();
 
                         Grid_Cita.Rows.Add(row);
                     }
@@ -125,6 +126,23 @@ namespace Tutankacuts
                     else try
                         {
                             if (string.IsNullOrEmpty(Combo_asist.Text)) Combo_asist.SelectedIndex = 0;
+                            int RowsCont = 0
+                                ;
+                            foreach (DataGridViewRow row in Grid_Cita.Rows)
+                            {
+                                foreach (DataGridViewCell cell in row.Cells)
+                                {
+                                    RowsCont++;
+                                }
+                            }
+                            if (RowsCont <= 9)
+                            {
+
+                                DataGridViewRow row = new DataGridViewRow();
+                                row.CreateCells(Grid_Cita);
+                                Grid_Cita.Rows.Add(row);
+                                throw new Exception(message: "El Cliente no esta dado de alta. Se utilizara valor actual");
+                            }
                             string datetime = Fecha_toString();
                             SqlCommand add = new SqlCommand(String.Format("insert into Citas values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", txt_Tel.Text, txt_Name.Text, datetime
                                 , Combo_Hrs.Text, Combo_Barber.Text, Combo_Tipo.Text, Combo_asist.Text), conexion);
@@ -147,6 +165,8 @@ namespace Tutankacuts
                                 MessageBox.Show("Actializar los datos del Nuevo Cliente al terminar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 ExAdd.Dispose();
                                 conexion.Close();
+
+
                                 Activacion(4);
                             }
                             catch (Exception)
@@ -220,9 +240,11 @@ namespace Tutankacuts
 
         private void bttn_Seleccionar_Click(object sender, EventArgs e)
         {
+
             try
             {
                 string name = Grid_Cita.CurrentRow.Cells[0].Value.ToString(), tel = Grid_Cita.CurrentRow.Cells[1].Value.ToString();
+
                 if (string.IsNullOrEmpty(Grid_Cita.CurrentRow.Cells[2].Value.ToString()))
                 {
 
@@ -230,10 +252,10 @@ namespace Tutankacuts
                 else
                 {
                     string
-                        Feccha = Grid_Cita.CurrentRow.Cells[2].Value.ToString(), Barber = Grid_Cita.CurrentRow.Cells[4].Value.ToString(),
-                        Tipo = Grid_Cita.CurrentRow.Cells[5].Value.ToString(), Asist = Grid_Cita.CurrentRow.Cells[6].Value.ToString(),
-                        IDd = Grid_Cita.CurrentRow.Cells[7].Value.ToString(), hora = Grid_Cita.CurrentRow.Cells[3].Value.ToString();
-                    
+                        Feccha = Grid_Cita.CurrentRow.Cells[2].Value.ToString() ?? string.Empty, Barber = Grid_Cita.CurrentRow.Cells[4].Value.ToString() ?? string.Empty,
+                        Tipo = Grid_Cita.CurrentRow.Cells[5].Value.ToString() ?? string.Empty, Asist = Grid_Cita.CurrentRow.Cells[6].Value.ToString() ?? string.Empty,
+                        IDd = Grid_Cita.CurrentRow.Cells[7].Value.ToString() ?? string.Empty, hora = Grid_Cita.CurrentRow.Cells[3].Value.ToString() ?? string.Empty;
+
                     Combo_Tipo.Text = Tipo;
                     Combo_Hrs.Text = hora;
                     Combo_Barber.Text = Barber;
@@ -243,25 +265,25 @@ namespace Tutankacuts
 
                 }
                 txt_Name.Text = name; txt_Name.Enabled = false;
-                txt_Tel.Text = tel; txt_Tel.Enabled = false;
-                code = String.Format("SELECT [NameC],[Tel],[FCita],[TimeAtt],[Barbero],[Tipo],[Asist],CitaNum FROM [dbo].[Citas] where NameC like '{0}' and Tel like '{1}'", txt_Name.Text, txt_Tel.Text
-                );
-                Activacion(2);
-                    Thread.Sleep(50);
-                    int numeroBuscado = int.Parse(lbl_ID.Text); // Número que deseas buscar en el grid
+                txt_Tel.Text = tel; txt_Tel.Enabled = false; Thread.Sleep(20);
+                code = String.Format("SELECT [NameC],[Tel],[FCita],[TimeAtt],[Barbero],[Tipo],[Asist],CitaNum FROM [dbo].[Citas] where NameC like '{0}' and Tel like '{1}'", txt_Name.Text, txt_Tel.Text);
 
-                    foreach (DataGridViewRow row in Grid_Cita.Rows)
+                Activacion(2);
+                Thread.Sleep(50);
+                int numeroBuscado = int.Parse(lbl_ID.Text); // Número que deseas buscar en el grid
+
+                foreach (DataGridViewRow row in Grid_Cita.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
                     {
-                        foreach (DataGridViewCell cell in row.Cells)
+                        if (cell.Value != null && cell.Value.ToString() == numeroBuscado.ToString())
                         {
-                            if (cell.Value != null && cell.Value.ToString() == numeroBuscado.ToString())
-                            {
-                                row.DefaultCellStyle.BackColor = Color.Aqua; // Pintar toda la fila
-                                break;
-                            }
+                            row.DefaultCellStyle.BackColor = Color.Aqua; // Pintar toda la fila
+                            break;
                         }
                     }
-                
+                }
+
             }
             catch (Exception)
             {
@@ -298,7 +320,7 @@ namespace Tutankacuts
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand(String.Format("UPDATE [dbo].[Citas] SET [FCita] = '{1}'  ,[TimeAtt] ='{2}' ,[Barbero] = '{3}',[Tipo] = '{4}'\r\n      ,[Asist] = '{5}'\r\n WHERE CitaNum='{0}'",lbl_ID.Text,Fecha_toString(),Combo_Hrs.Text,Combo_Barber.Text,Combo_Tipo.Text,Combo_asist.Text),conexion);
+                    SqlCommand cmd = new SqlCommand(String.Format("UPDATE [dbo].[Citas] SET [FCita] = '{1}'  ,[TimeAtt] ='{2}' ,[Barbero] = '{3}',[Tipo] = '{4}'\r\n      ,[Asist] = '{5}'\r\n WHERE CitaNum='{0}'", lbl_ID.Text, Fecha_toString(), Combo_Hrs.Text, Combo_Barber.Text, Combo_Tipo.Text, Combo_asist.Text), conexion);
                     conexion.Open();
                     cmd.ExecuteNonQuery();
                     conexion.Close(); MessageBox.Show("Datos Actualizados");
@@ -321,12 +343,18 @@ namespace Tutankacuts
                 Activacion(2);
                 MessageBox.Show("Test");
             }
-            
+
         }
 
         private void Grid_Cita_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void Grid_Cita_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txt_Name.Text = Grid_Cita.CurrentRow.Cells[0].Value.ToString();
+            txt_Tel.Text= Grid_Cita.CurrentRow.Cells[1].Value.ToString() ;  
         }
     }
 }
