@@ -45,13 +45,8 @@
             bttn_Modify = new Button();
             bttn_Save = new Button();
             Combo_Units = new ComboBox();
-            Nombre = new DataGridViewTextBoxColumn();
-            Tipo = new DataGridViewTextBoxColumn();
-            Contenido = new DataGridViewTextBoxColumn();
-            Unidad = new DataGridViewTextBoxColumn();
-            Costo = new DataGridViewTextBoxColumn();
-            Proov = new DataGridViewTextBoxColumn();
-            ID = new DataGridViewTextBoxColumn();
+            lbl_ID = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)Grid_Product).BeginInit();
             SuspendLayout();
             // 
@@ -72,6 +67,7 @@
             txt_Name.Name = "txt_Name";
             txt_Name.Size = new Size(164, 23);
             txt_Name.TabIndex = 1;
+            txt_Name.TextChanged += txt_Name_TextChanged;
             // 
             // label2
             // 
@@ -164,11 +160,10 @@
             // 
             Grid_Product.BackgroundColor = Color.FromArgb(34, 33, 74);
             Grid_Product.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Grid_Product.Columns.AddRange(new DataGridViewColumn[] { Nombre, Tipo, Contenido, Unidad, Costo, Proov, ID });
-            Grid_Product.Location = new Point(44, 206);
+            Grid_Product.Location = new Point(50, 205);
             Grid_Product.Name = "Grid_Product";
             Grid_Product.RowTemplate.Height = 25;
-            Grid_Product.Size = new Size(700, 179);
+            Grid_Product.Size = new Size(700, 233);
             Grid_Product.TabIndex = 31;
             Grid_Product.CellContentClick += Grid_Product_CellContentClick;
             // 
@@ -180,6 +175,7 @@
             bttn_Cancel.TabIndex = 35;
             bttn_Cancel.Text = "Cancelar";
             bttn_Cancel.UseVisualStyleBackColor = true;
+            bttn_Cancel.Click += bttn_Cancel_Click;
             // 
             // bttn_Delete
             // 
@@ -189,6 +185,7 @@
             bttn_Delete.TabIndex = 34;
             bttn_Delete.Text = "Eliminar";
             bttn_Delete.UseVisualStyleBackColor = true;
+            bttn_Delete.Click += bttn_Delete_Click;
             // 
             // bttn_Modify
             // 
@@ -198,6 +195,7 @@
             bttn_Modify.TabIndex = 33;
             bttn_Modify.Text = "Modificar";
             bttn_Modify.UseVisualStyleBackColor = true;
+            bttn_Modify.Click += bttn_Modify_Click;
             // 
             // bttn_Save
             // 
@@ -207,6 +205,7 @@
             bttn_Save.TabIndex = 32;
             bttn_Save.Text = "Agregar";
             bttn_Save.UseVisualStyleBackColor = true;
+            bttn_Save.Click += bttn_Save_Click;
             // 
             // Combo_Units
             // 
@@ -215,43 +214,31 @@
             Combo_Units.Location = new Point(428, 65);
             Combo_Units.Name = "Combo_Units";
             Combo_Units.Size = new Size(164, 23);
-            Combo_Units.TabIndex = 36;
+            Combo_Units.TabIndex = 4;
             // 
-            // Nombre
+            // lbl_ID
             // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.Name = "Nombre";
+            lbl_ID.AutoSize = true;
+            lbl_ID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_ID.ForeColor = Color.Gainsboro;
+            lbl_ID.Location = new Point(172, 41);
+            lbl_ID.Name = "lbl_ID";
+            lbl_ID.Size = new Size(19, 21);
+            lbl_ID.TabIndex = 54;
+            lbl_ID.Text = "#";
+            lbl_ID.UseMnemonic = false;
             // 
-            // Tipo
+            // label5
             // 
-            Tipo.HeaderText = "Tipo";
-            Tipo.Name = "Tipo";
-            // 
-            // Contenido
-            // 
-            Contenido.HeaderText = "Contenido";
-            Contenido.Name = "Contenido";
-            // 
-            // Unidad
-            // 
-            Unidad.HeaderText = "Unidades";
-            Unidad.Name = "Unidad";
-            // 
-            // Costo
-            // 
-            Costo.HeaderText = "Precio";
-            Costo.Name = "Costo";
-            // 
-            // Proov
-            // 
-            Proov.HeaderText = "Proveedor";
-            Proov.Name = "Proov";
-            // 
-            // ID
-            // 
-            ID.HeaderText = "ID";
-            ID.Name = "ID";
-            ID.Width = 45;
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = Color.Gainsboro;
+            label5.Location = new Point(138, 41);
+            label5.Name = "label5";
+            label5.Size = new Size(28, 21);
+            label5.TabIndex = 53;
+            label5.Text = "ID:";
+            label5.UseMnemonic = false;
             // 
             // Inventario
             // 
@@ -259,6 +246,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 33, 74);
             ClientSize = new Size(800, 450);
+            Controls.Add(lbl_ID);
+            Controls.Add(label5);
             Controls.Add(Combo_Units);
             Controls.Add(bttn_Cancel);
             Controls.Add(bttn_Delete);
@@ -302,12 +291,7 @@
         private Button bttn_Modify;
         private Button bttn_Save;
         private ComboBox Combo_Units;
-        private DataGridViewTextBoxColumn Nombre;
-        private DataGridViewTextBoxColumn Tipo;
-        private DataGridViewTextBoxColumn Contenido;
-        private DataGridViewTextBoxColumn Unidad;
-        private DataGridViewTextBoxColumn Costo;
-        private DataGridViewTextBoxColumn Proov;
-        private DataGridViewTextBoxColumn ID;
+        private Label lbl_ID;
+        private Label label5;
     }
 }

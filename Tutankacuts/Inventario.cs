@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,88 +33,52 @@ namespace Tutankacuts
             {
                 case 0:
                     //Codigo dfe Inicio
-                    Grid_Product.Rows.Clear();
                     USR = this.Text.ToString().Substring(4);
-                    SqlCommand cmd = new SqlCommand(String.Format("SELECT [NameProducto]\r\n      ,[TipoPrd]\r\n      ,[Contenido]\r\n      ,[Unidades]\r\n      ,[Price]\r\n      ,[Proveedor]\r\n  FROM [dbo].[Productos] {0}", code), conexion);
-                    conexion.Close(); code = "";
-                    conexion.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        DataGridViewRow row = new DataGridViewRow();
-                        row.CreateCells(Grid_Product);
-                        row.Cells[0].Value = dr[0].ToString();
-                        row.Cells[1].Value = dr[1].ToString();
-                        row.Cells[2].Value = dr[2].ToString();
-                        row.Cells[3].Value = dr[3].ToString();
-                        row.Cells[4].Value = dr[4].ToString();
-                        row.Cells[5].Value = dr[5].ToString();
-                        Grid_Product.Rows.Add(row);
+                    Grid_Product.DataSource = Llenado_Grid();
 
-                    }
-                    cmd.Dispose(); dr.Dispose();
-                    /*   cmd = new(String.Format("select IDProduct from Productos"), conexion);
-                       dr = cmd.ExecuteReader();
-                       Combo_Barber.Items.Clear();
-                       while (dr.Read())
-                       {
-                           Combo_Barber.Items.Add(dr.GetString(0));
-                       }*/
-                    conexion.Close();
 
                     bttn_Delete.Enabled = false;
+                    bttn_Modify.Enabled = false;
                     bttn_Save.Enabled = true;
+
+                    lbl_ID.Text = "#";
+                    txt_Cont.Text = "";
+                    txt_Name.Text = "";
+                    txt_Price.Text = "";
+                    Combo_Proov.Text = "";
+                    Combo_Tipo.Text = "";
+                    Combo_Units.Text = "";
                     break;
                 case 1:
-                    ;
+
                     break;
                 case 2:
-                    //Codigo Custom 7Param
-                    conexion.Close();
-                    conexion.Open();
-                    SqlCommand cmd1 = new SqlCommand(code, conexion);
-                    SqlDataReader dr1 = cmd1.ExecuteReader();
-                    while (dr1.Read())
-                    {
-                        DataGridViewRow row = new DataGridViewRow();
-                        row.CreateCells(Grid_Product);
-                        row.Cells[0].Value = dr1[0].ToString();
-                        row.Cells[1].Value = dr1[1].ToString();
-                        row.Cells[2].Value = dr1[2].ToString();
-                        row.Cells[3].Value = dr1[3].ToString();
-                        row.Cells[4].Value = dr1[4].ToString();
-                        row.Cells[5].Value = dr1[5].ToString();
-                        row.Cells[6].Value = dr1[6].ToString();
-                        row.Cells[7].Value = dr1[7].ToString();
-
-                        Grid_Product.Rows.Add(row);
-                    }
-                    code = "";
-                    cmd1.Dispose(); dr1.Dispose();
-                    conexion.Close();
                     break;
                 case 3:  //Codigo Custom Lectura 2Param
-                    Grid_Product.Rows.Clear();
-                    SqlCommand cmd2 = new SqlCommand(code, conexion);
-                    conexion.Close(); code = "";
-                    conexion.Open();
-                    SqlDataReader dr2 = cmd2.ExecuteReader();
-                    while (dr2.Read())
-                    {
-                        DataGridViewRow row = new DataGridViewRow();
-                        row.CreateCells(Grid_Product);
-                        row.Cells[0].Value = dr2[1].ToString();
-                        row.Cells[1].Value = dr2[0].ToString();
-
-                        Grid_Product.Rows.Add(row);
-                    }
-                    cmd2.Dispose(); dr2.Dispose();
-                    conexion.Close();
+                    Grid_Product.DataSource = Llenado_Grid(code);
 
                     break;
                 case 4://Revisar Campos esten llenos
+                    bool Checked = false;
+                    Checked = string.IsNullOrEmpty(txt_Name.Text) || string.IsNullOrEmpty(txt_Cont.Text) || string.IsNullOrEmpty(txt_Price.Text) ||
+                        string.IsNullOrEmpty(Combo_Proov.Text) || string.IsNullOrEmpty(Combo_Units.Text) || string.IsNullOrEmpty(Combo_Tipo.Text);
+                    if (Checked) MessageBox.Show("Favor de rellenar Todos los campos");
+                    else try
+                        {
+                            SqlCommand sqlCommand = new SqlCommand(string.Format("insert into Productos values ('{0}','{1}','{2}','{3}','{4}','{5}')"
+                                , txt_Name.Text, Combo_Units.Text, Combo_Tipo.Text, txt_Price.Text, txt_Cont.Text, Combo_Proov.Text), conexion);
+                            conexion.Open();
+                            sqlCommand.ExecuteNonQuery();
+                            conexion.Close();
+                            MessageBox.Show("Producto Agregado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Activacion(0);
+                        }
+                        catch (Exception e)
+                        {
 
-
+                            MessageBox.Show("Error al dar de alta: " + e.Message);
+                        }
+                    conexion.Close();
                     break;
 
                 default:
@@ -124,8 +89,117 @@ namespace Tutankacuts
 
         private void Grid_Product_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string ID = Grid_Product.CurrentRow.Cells[6].Value.ToString() ?? string.Empty;
-            SqlCommand sqlCommand = new SqlCommand(string.Format(""), conexion);
+            lbl_ID.Text = Grid_Product.CurrentRow.Cells[6].Value.ToString(); SqlCommand sqlCommand = new SqlCommand(String.Format("select [NameProducto],[TipoPrd],[Contenido],[Unidades],[Price],[Proveedor] from [Productos] where [IDProduct] like '{0}'", lbl_ID.Text), conexion);
+            conexion.Open();
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            if (reader.Read())
+            {
+                txt_Name.Text = reader.GetString(0);
+                Combo_Tipo.Text = reader.GetString(1);
+                txt_Cont.Text = reader.GetString(2);
+                Combo_Units.Text = reader.GetSqlInt32(3).ToString();
+                txt_Price.Text = reader.GetSqlMoney(4).ToString();
+                Combo_Proov.Text = reader.GetString(5);
+
+            }
+            conexion.Close();
+            bttn_Modify.Enabled = true; bttn_Delete.Enabled = true; bttn_Save.Enabled = false;
+
+        }
+
+
+        public DataTable Llenado_Grid()
+        {
+            conexion.Open();
+            DataTable dt = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand(String.Format("Select [NameProducto]as Nombre,[TipoPrd] as Tipo,[Contenido],[Unidades],[Price]as Precio,[Proveedor],[IDProduct]as ID   from Productos {0}", code), conexion);
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+            adapter.Fill(dt);
+            code = ""; conexion.Close();
+            return dt;
+        }
+        public DataTable Llenado_Grid(string Commandosql)
+        {
+            conexion.Open();
+            DataTable dt = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand(Commandosql, conexion);
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+            adapter.Fill(dt);
+            conexion.Close();
+            return dt;
+        }
+
+        private void bttn_Save_Click(object sender, EventArgs e)
+        {
+            Activacion(4);
+        }
+
+        private void bttn_Modify_Click(object sender, EventArgs e)
+        {
+            bool Checked = false;
+            Checked = string.IsNullOrEmpty(txt_Name.Text) || string.IsNullOrEmpty(txt_Cont.Text) || string.IsNullOrEmpty(txt_Price.Text) ||
+                string.IsNullOrEmpty(Combo_Proov.Text) || string.IsNullOrEmpty(Combo_Units.Text) || string.IsNullOrEmpty(Combo_Tipo.Text);
+            if (Checked) MessageBox.Show("Favor de rellenar Todos los campos");
+            else try
+                {
+                    SqlCommand sqlCommand = new SqlCommand(string.Format("UPDATE [dbo].[Productos] SET [NameProducto] = '{0}',[Unidades] = '{1}',[TipoPrd] = '{2}',[Price] = '{3}',[Contenido] = '{4}',[Proveedor] = '{5}' WHERE [IDProduct] like '{6}'"
+                        , txt_Name.Text, Combo_Units.Text, Combo_Tipo.Text, txt_Price.Text, txt_Cont.Text, Combo_Proov.Text, lbl_ID.Text), conexion);
+                    conexion.Open();
+                    sqlCommand.ExecuteNonQuery();
+                    conexion.Close();
+                    MessageBox.Show("Producto Modificado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Activacion(0);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Error al Modificar: " + ex.Message);
+                }
+
+        }
+
+        private void bttn_Delete_Click(object sender, EventArgs e)
+        {
+            if (lbl_ID.Text != "#")
+            {
+                DialogResult dialogResult = MessageBox.Show("Estas Seguro de eliminar al Producto " + lbl_ID.Text + "- " + txt_Name.Text, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    try
+                    {
+                        SqlCommand sqlCommand = new SqlCommand(string.Format("DELETE FROM [dbo].[Productos] WHERE [IDProduct] like '{0}'", lbl_ID.Text), conexion);
+                        conexion.Open();
+                        sqlCommand.ExecuteNonQuery();
+                        conexion.Close();
+                        MessageBox.Show("Producto Eliminado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Activacion(0);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("No es posible eliminar, Error", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    }
+                    conexion.Close();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    MessageBox.Show("Operacion Cancelada");
+                }
+                conexion.Close();
+                Activacion(0);
+            }
+        }
+
+        private void bttn_Cancel_Click(object sender, EventArgs e)
+        {
+            Activacion(0);
+        }
+
+        private void txt_Name_TextChanged(object sender, EventArgs e)
+        {
+            if (lbl_ID.Text != "#")
+            {
+
+            }
         }
     }
 }

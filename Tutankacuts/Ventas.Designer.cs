@@ -34,15 +34,7 @@
             bttn_Delete = new Button();
             bttn_Cancel = new Button();
             Grid_Cita = new DataGridView();
-            Nombre = new DataGridViewTextBoxColumn();
-            Tel = new DataGridViewTextBoxColumn();
-            Fecha = new DataGridViewTextBoxColumn();
-            Hora = new DataGridViewTextBoxColumn();
-            Barber = new DataGridViewTextBoxColumn();
-            Corte = new DataGridViewTextBoxColumn();
-            Asist = new DataGridViewTextBoxColumn();
             txt_Nombre = new TextBox();
-            textBox2 = new TextBox();
             label2 = new Label();
             label5 = new Label();
             label6 = new Label();
@@ -50,6 +42,7 @@
             Combo_Tipo = new ComboBox();
             lbl_ID = new Label();
             label7 = new Label();
+            Txt_Tel = new TextBox();
             ((System.ComponentModel.ISupportInitialize)Grid_Cita).BeginInit();
             SuspendLayout();
             // 
@@ -106,48 +99,11 @@
             Grid_Cita.BackgroundColor = Color.FromArgb(34, 33, 74);
             Grid_Cita.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             Grid_Cita.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Grid_Cita.Columns.AddRange(new DataGridViewColumn[] { Nombre, Tel, Fecha, Hora, Barber, Corte, Asist });
             Grid_Cita.Location = new Point(36, 252);
             Grid_Cita.Name = "Grid_Cita";
             Grid_Cita.RowTemplate.Height = 25;
             Grid_Cita.Size = new Size(734, 163);
             Grid_Cita.TabIndex = 5;
-            // 
-            // Nombre
-            // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.Name = "Nombre";
-            // 
-            // Tel
-            // 
-            Tel.HeaderText = "Telefono";
-            Tel.Name = "Tel";
-            // 
-            // Fecha
-            // 
-            Fecha.HeaderText = "Fecha";
-            Fecha.Name = "Fecha";
-            // 
-            // Hora
-            // 
-            Hora.HeaderText = "Hora";
-            Hora.Name = "Hora";
-            // 
-            // Barber
-            // 
-            Barber.HeaderText = "Barbero";
-            Barber.Name = "Barber";
-            // 
-            // Corte
-            // 
-            Corte.HeaderText = "Corte";
-            Corte.Name = "Corte";
-            // 
-            // Asist
-            // 
-            Asist.HeaderText = "Asistencia";
-            Asist.Name = "Asist";
-            Asist.Width = 90;
             // 
             // txt_Nombre
             // 
@@ -156,16 +112,6 @@
             txt_Nombre.Size = new Size(164, 23);
             txt_Nombre.TabIndex = 6;
             txt_Nombre.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(120, 40);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(164, 23);
-            textBox2.TabIndex = 8;
-            textBox2.Tag = "";
-            textBox2.Text = "000-000-0000";
-            textBox2.TextAlign = HorizontalAlignment.Center;
             // 
             // label2
             // 
@@ -242,6 +188,16 @@
             label7.Text = "ID:";
             label7.UseMnemonic = false;
             // 
+            // Txt_Tel
+            // 
+            Txt_Tel.Location = new Point(120, 39);
+            Txt_Tel.Name = "Txt_Tel";
+            Txt_Tel.Size = new Size(164, 23);
+            Txt_Tel.TabIndex = 55;
+            Txt_Tel.Tag = "";
+            Txt_Tel.Text = "000-000-0000";
+            Txt_Tel.TextAlign = HorizontalAlignment.Center;
+            // 
             // Ventas
             // 
             AcceptButton = bttn_Save;
@@ -249,13 +205,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 33, 74);
             ClientSize = new Size(800, 450);
+            Controls.Add(Txt_Tel);
             Controls.Add(lbl_ID);
             Controls.Add(label7);
             Controls.Add(Combo_Tipo);
             Controls.Add(Combo_Barber);
             Controls.Add(label6);
             Controls.Add(label5);
-            Controls.Add(textBox2);
             Controls.Add(label2);
             Controls.Add(txt_Nombre);
             Controls.Add(Grid_Cita);
@@ -281,20 +237,13 @@
         private Button bttn_Cancel;
         private DataGridView Grid_Cita;
         private TextBox txt_Nombre;
-        private TextBox textBox2;
         private Label label2;
         private Label label5;
         private Label label6;
         private ComboBox Combo_Barber;
         private ComboBox Combo_Tipo;
-        private DataGridViewTextBoxColumn Nombre;
-        private DataGridViewTextBoxColumn Tel;
-        private DataGridViewTextBoxColumn Fecha;
-        private DataGridViewTextBoxColumn Hora;
-        private DataGridViewTextBoxColumn Barber;
-        private DataGridViewTextBoxColumn Corte;
-        private DataGridViewTextBoxColumn Asist;
         private Label lbl_ID;
         private Label label7;
+        private TextBox Txt_Tel;
     }
 }
