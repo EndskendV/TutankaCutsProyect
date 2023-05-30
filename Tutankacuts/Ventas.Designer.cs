@@ -34,22 +34,15 @@
             bttn_Delete = new Button();
             bttn_Cancel = new Button();
             Grid_Cita = new DataGridView();
-            Nombre = new DataGridViewTextBoxColumn();
-            Tel = new DataGridViewTextBoxColumn();
-            Fecha = new DataGridViewTextBoxColumn();
-            Hora = new DataGridViewTextBoxColumn();
-            Barber = new DataGridViewTextBoxColumn();
-            Corte = new DataGridViewTextBoxColumn();
-            Asist = new DataGridViewTextBoxColumn();
             txt_Nombre = new TextBox();
             textBox2 = new TextBox();
             label2 = new Label();
             label5 = new Label();
             label6 = new Label();
-            Combo_Barber = new ComboBox();
-            Combo_Tipo = new ComboBox();
+            Combo_Cant = new ComboBox();
             lbl_ID = new Label();
             label7 = new Label();
+            Combo_Product = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)Grid_Cita).BeginInit();
             SuspendLayout();
             // 
@@ -106,48 +99,11 @@
             Grid_Cita.BackgroundColor = Color.FromArgb(34, 33, 74);
             Grid_Cita.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             Grid_Cita.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Grid_Cita.Columns.AddRange(new DataGridViewColumn[] { Nombre, Tel, Fecha, Hora, Barber, Corte, Asist });
             Grid_Cita.Location = new Point(36, 252);
             Grid_Cita.Name = "Grid_Cita";
             Grid_Cita.RowTemplate.Height = 25;
             Grid_Cita.Size = new Size(734, 163);
             Grid_Cita.TabIndex = 5;
-            // 
-            // Nombre
-            // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.Name = "Nombre";
-            // 
-            // Tel
-            // 
-            Tel.HeaderText = "Telefono";
-            Tel.Name = "Tel";
-            // 
-            // Fecha
-            // 
-            Fecha.HeaderText = "Fecha";
-            Fecha.Name = "Fecha";
-            // 
-            // Hora
-            // 
-            Hora.HeaderText = "Hora";
-            Hora.Name = "Hora";
-            // 
-            // Barber
-            // 
-            Barber.HeaderText = "Barbero";
-            Barber.Name = "Barber";
-            // 
-            // Corte
-            // 
-            Corte.HeaderText = "Corte";
-            Corte.Name = "Corte";
-            // 
-            // Asist
-            // 
-            Asist.HeaderText = "Asistencia";
-            Asist.Name = "Asist";
-            Asist.Width = 90;
             // 
             // txt_Nombre
             // 
@@ -201,22 +157,14 @@
             label6.Text = "Cantidad";
             label6.Click += label6_Click;
             // 
-            // Combo_Barber
+            // Combo_Cant
             // 
-            Combo_Barber.FormattingEnabled = true;
-            Combo_Barber.Location = new Point(453, 40);
-            Combo_Barber.Name = "Combo_Barber";
-            Combo_Barber.Size = new Size(164, 23);
-            Combo_Barber.TabIndex = 21;
-            // 
-            // Combo_Tipo
-            // 
-            Combo_Tipo.FormattingEnabled = true;
-            Combo_Tipo.Items.AddRange(new object[] { "Corte de Pelo", "Corte de Pelo y Rasurado", "Tinte", "Tratamiento" });
-            Combo_Tipo.Location = new Point(453, 90);
-            Combo_Tipo.Name = "Combo_Tipo";
-            Combo_Tipo.Size = new Size(164, 23);
-            Combo_Tipo.TabIndex = 22;
+            Combo_Cant.FormattingEnabled = true;
+            Combo_Cant.Items.AddRange(new object[] { "Corte de Pelo", "Corte de Pelo y Rasurado", "Tinte", "Tratamiento" });
+            Combo_Cant.Location = new Point(453, 90);
+            Combo_Cant.Name = "Combo_Cant";
+            Combo_Cant.Size = new Size(164, 23);
+            Combo_Cant.TabIndex = 22;
             // 
             // lbl_ID
             // 
@@ -242,6 +190,14 @@
             label7.Text = "ID:";
             label7.UseMnemonic = false;
             // 
+            // Combo_Product
+            // 
+            Combo_Product.FormattingEnabled = true;
+            Combo_Product.Location = new Point(453, 40);
+            Combo_Product.Name = "Combo_Product";
+            Combo_Product.Size = new Size(164, 23);
+            Combo_Product.TabIndex = 55;
+            // 
             // Ventas
             // 
             AcceptButton = bttn_Save;
@@ -249,10 +205,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 33, 74);
             ClientSize = new Size(800, 450);
+            Controls.Add(Combo_Product);
             Controls.Add(lbl_ID);
             Controls.Add(label7);
-            Controls.Add(Combo_Tipo);
-            Controls.Add(Combo_Barber);
+            Controls.Add(Combo_Cant);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(textBox2);
@@ -286,15 +242,9 @@
         private Label label5;
         private Label label6;
         private ComboBox Combo_Barber;
-        private ComboBox Combo_Tipo;
-        private DataGridViewTextBoxColumn Nombre;
-        private DataGridViewTextBoxColumn Tel;
-        private DataGridViewTextBoxColumn Fecha;
-        private DataGridViewTextBoxColumn Hora;
-        private DataGridViewTextBoxColumn Barber;
-        private DataGridViewTextBoxColumn Corte;
-        private DataGridViewTextBoxColumn Asist;
+        private ComboBox Combo_Cant;
         private Label lbl_ID;
         private Label label7;
+        private ComboBox Combo_Product;
     }
 }
